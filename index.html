@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+  <!--<![endif]-->
+  <head>
+    <title>ఈ తెలుగు అక్షరాన్ని గుర్తుపట్టగలరా?</title>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Surya, full time Java, Java EE stack developer having excellent hands on experience in building end to end complex web application built using industry leadning technologies."
+    />
+    <meta name="author" content="Surya Rayarao" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Global CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/plugins/bootstrap/css/bootstrap.min.css"
+    />
+    <!-- Plugins CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/plugins/font-awesome/css/font-awesome.css"
+    />
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var fruitsArray = [
+          "అ", "ఆ", "ఇ", "ఈ", "ఉ", "ఊ", "ఋ", "ౠ",  "ఎ", "ఏ", "ఐ", "ఒ", "ఓ", "ఔ", "అం", "అః", "క", "ఖ", "గ", "ఘ", "ఙ", "చ", "ఛ", "జ", "ఝ", "ఞ", "ట", "ఠ", "డ", "ఢ", "ణ", "త", "థ", "ద", "ధ", "న", "ప", "ఫ", "బ", "భ", "మ", "య", "ర", "ల", "వ", "శ", "ష", "స", "హ", "ళ", "ఱ", "క్ష"
+        ];
+
+        $("#currentYear").text(new Date().getFullYear());
+        
+
+         let searchParams = new URLSearchParams(window.location.search)
+          let interval = 5000;
+          if (searchParams.has('interval')) {
+              interval = searchParams.get('interval');
+              interval = parseInt(interval)*1000;
+          }
+
+
+          setInterval(function () {
+               var randomNumber = parseInt("" + Math.random() * fruitsArray.length);
+            
+              $('#randomNumber').text(fruitsArray[randomNumber] + "" );
+          }, interval);  //Delay here = 5 seconds 
+
+        $.each(fruitsArray, function(index, value) {
+          $("#result").append(index + ": " + value + "<br>");
+        });
+      });
+
+     
+    </script>
+    
+
+  </head>
+
+  <body>
+    
+    <div class="wrapper">
+      <!--//sidebar-wrapper-->
+
+      <div class="main-wrapper">
+        <section class="section summary-section">
+          <h2 class="section-title">
+            <i class="fa fa-lightbulb-o"></i>ఈ తెలుగు అక్షరాన్ని గుర్తుపట్టగలరా?
+          </h2>
+           <div id="randomNumber"></div>
+            <script>
+              $("#randomNumber").css("fontSize", "400px");
+            </script>
+          </div>
+          <!--//summary-->
+        </section>
+        <!--//section-->
+      </div>
+      <!--//main-body-->
+    </div>
+
+    <footer class="footer">
+      <div class="text-center">
+        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+        <small class="copyright"
+          >Designed with <i class="fa fa-heart"></i> by
+          <a href="http://www.suryarao.in" target="_blank"
+            >Surya Rayarao</a
+          ></small
+        >
+        <p>
+          Copyright
+          <small class="copyright"
+            ><span id="currentYear"></span> &copy; Surya Rayarao</small
+          >
+        </p>
+      </div>
+      <!--//container-->
+    </footer>
+    <!--//footer-->
+
+    <!-- Javascript -->
+    <script
+      type="text/javascript"
+      src="assets/plugins/jquery-1.11.3.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="assets/plugins/bootstrap/js/bootstrap.min.js"
+    ></script>
+    
+  </body>
+</html>
