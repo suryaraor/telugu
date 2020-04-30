@@ -104,8 +104,11 @@
       $("#increase").click(function () {
         if (speed >= 99) {
           speed = 3;
+        }else if(speed <=1){
+          speed = 1;
+        }else{
+          speed = parseInt(speed) + 1;
         }
-        speed = parseInt(speed) + 1;
         var url = new URL(window.location.href);
         url.searchParams.set('speed', speed);
         window.location.href = url.href;
@@ -115,11 +118,12 @@
         
         if(speed <=1){
           speed = 1;
-        }
-        if (speed >= 99) {
+        }else if (speed >= 99) {
           speed = 3;
-        }
-        speed = speed - 1;
+        }else{
+          speed = speed - 1;
+        
+        
         var url = new URL(window.location.href);
         url.searchParams.set('speed', speed);
         window.location.href = url.href;
@@ -152,8 +156,8 @@
 </head>
 
 <body>
-  <a class="btn" id="achhulu"><i class="fa fa-filter"></i> అచ్చులు మాత్రమే</a>
-  <a class="btn" id="hallulu"><i class="fa fa-filter"></i> హల్లులు మాత్రమే</a>
+  <a class="btn" id="achhulu"><i class="fa fa-filter"></i> అచ్చులు</a>
+  <a class="btn" id="hallulu"><i class="fa fa-filter"></i> హల్లులు</a>
   <a class="btn" id="achhuluhallulu"><i class="fa fa-filter"></i> అచ్చులు + హల్లులు</a>
   <a class="btn" id="increase"><i class="fa fa-minus"></i></a>Speed
   <a class="btn" id="decrease"><i class="fa fa-plus"></i> </a>
