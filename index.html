@@ -3,113 +3,198 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
-  <!--<![endif]-->
-  <head>
-    <title>ఈ తెలుగు అక్షరాన్ని గుర్తుపట్టగలరా?</title>
-    <!-- Meta -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="This is a simple yet powerful interactive game for Kids learning Telugu Alphabets. Kids will be presented with random alphabets from Telugu and you can ask them to identify."
-    />
-    <meta name="author" content="Surya Rayarao" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!-- Global CSS -->
-    <link
-      rel="stylesheet"
-      href="assets/plugins/bootstrap/css/bootstrap.min.css"
-    />
-    <!-- Plugins CSS -->
-    <link
-      rel="stylesheet"
-      href="assets/plugins/font-awesome/css/font-awesome.css"
-    />
+<!--<![endif]-->
 
-    <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css" />
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        var fruitsArray = [
-          "అ", "ఆ", "ఇ", "ఈ", "ఉ", "ఊ", "ఋ", "ౠ",  "ఎ", "ఏ", "ఐ", "ఒ", "ఓ", "ఔ", "అం", "అః", "క", "ఖ", "గ", "ఘ", "ఙ", "చ", "ఛ", "జ", "ఝ", "ఞ", "ట", "ఠ", "డ", "ఢ", "ణ", "త", "థ", "ద", "ధ", "న", "ప", "ఫ", "బ", "భ", "మ", "య", "ర", "ల", "వ", "శ", "ష", "స", "హ", "ళ", "ఱ", "క్ష"
-        ];
+<head>
+  <title>ఈ తెలుగు అక్షరాన్ని గుర్తుపట్టగలరా?</title>
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="This is a simple yet powerful interactive game for Kids learning Telugu Alphabets. Kids will be presented with random alphabets from Telugu and you can ask them to identify." />
+  <meta name="author" content="Surya Rayarao" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"
+    rel="stylesheet" type="text/css" />
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css" />
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css" />
 
-        $("#currentYear").text(new Date().getFullYear());
-        
+  <!-- Theme CSS -->
+  <link id="theme-style" rel="stylesheet" href="assets/css/styles.css" />
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var achhuluHalluluArray = [
+        "అ", "ఆ", "ఇ", "ఈ", "ఉ", "ఊ", "ఋ", "ౠ", "ఎ", "ఏ", "ఐ", "ఒ", "ఓ", "ఔ", "అం", "అః", "క", "ఖ", "గ", "ఘ", "ఙ", "చ", "ఛ", "జ", "ఝ", "ఞ", "ట", "ఠ", "డ", "ఢ", "ణ", "త", "థ", "ద", "ధ", "న", "ప", "ఫ", "బ", "భ", "మ", "య", "ర", "ల", "వ", "శ", "ష", "స", "హ", "ళ", "ఱ", "క్ష"
+      ];
 
-         let searchParams = new URLSearchParams(window.location.search)
-          let interval = 5000;
-          if (searchParams.has('interval')) {
-              interval = searchParams.get('interval');
-              interval = parseInt(interval)*1000;
-          }
+      var achhuluArray = [
+        "అ", "ఆ", "ఇ", "ఈ", "ఉ", "ఊ", "ఋ", "ౠ", "ఎ", "ఏ", "ఐ", "ఒ", "ఓ", "ఔ", "అం", "అః"
+      ];
+
+      var halluluArray = [
+        "క", "ఖ", "గ", "ఘ", "ఙ", "చ", "ఛ", "జ", "ఝ", "ఞ", "ట", "ఠ", "డ", "ఢ", "ణ", "త", "థ", "ద", "ధ", "న", "ప", "ఫ", "బ", "భ", "మ", "య", "ర", "ల", "వ", "శ", "ష", "స", "హ", "ళ", "ఱ", "క్ష"
+      ];
+
+      var finalArray = [];
+
+      $("#currentYear").text(new Date().getFullYear());
 
 
-          setInterval(function () {
-               var randomNumber = parseInt("" + Math.random() * fruitsArray.length);
-            
-              $('#randomNumber').text(fruitsArray[randomNumber] + "" );
-          }, interval);  //Delay here = 5 seconds 
+      let searchParams = new URLSearchParams(window.location.search);
+      let speed = 3;
+      let speedMillis = speed * 1000;
+      let achhulu = 'Y';
+      let hallulu = 'Y';
+      if (searchParams.has('speed')) {
+        speed = searchParams.get('speed');
+        speedMillis = parseInt(speed) * 1000;
+      }
+      if (searchParams.has('achhulu')) {
+        achhulu = searchParams.get('achhulu');
+      }
+      if (searchParams.has('hallulu')) {
+        hallulu = searchParams.get('hallulu');
+      }
 
-        $.each(fruitsArray, function(index, value) {
-          $("#result").append(index + ": " + value + "<br>");
-        });
+      if (achhulu == 'Y') {
+        if (hallulu == 'Y') {
+          finalArray = achhuluHalluluArray.slice();
+        } else {
+          finalArray = achhuluArray.slice();
+        }
+      } else {
+        finalArray = halluluArray.slice();
+      }
+
+
+      var randomNumber = parseInt("" + Math.random() * finalArray.length);
+      $('#randomNumber').text(finalArray[randomNumber] + "");
+
+
+      setInterval(function () {
+        var randomNumber = parseInt("" + Math.random() * finalArray.length);
+        $('#randomNumber').text(finalArray[randomNumber] + "");
+      }, speedMillis);  //Delay here = 5 seconds 
+
+
+      $("#achhulu").click(function () {
+        var url = new URL(window.location.href);
+        url.searchParams.set('achhulu', 'Y');
+        url.searchParams.set('hallulu', 'N');
+        window.location.href = url.href;
       });
 
-     
-    </script>
-    
+      $("#hallulu").click(function () {
+        var url = new URL(window.location.href);
+        url.searchParams.set('achhulu', 'N');
+        url.searchParams.set('hallulu', 'Y');
+        window.location.href = url.href;
+      });
 
-  </head>
+      $("#achhuluhallulu").click(function () {
+        var url = new URL(window.location.href);
+        url.searchParams.set('achhulu', 'Y');
+        url.searchParams.set('hallulu', 'Y');
+        window.location.href = url.href;
+      });
 
-  <body>
-    
-    <div class="wrapper">
-      <!--//sidebar-wrapper-->
+      $("#increase").click(function () {
+        if (speed >= 99) {
+          speed = 3;
+        }
+        speed = parseInt(speed) + 1;
+        var url = new URL(window.location.href);
+        url.searchParams.set('speed', speed);
+        window.location.href = url.href;
+      });
 
-      <div class="main-wrapper">
-        <section class="section summary-section">
-          <h2 class="section-title">
-            <i class="fa fa-lightbulb-o"></i>ఈ తెలుగు అక్షరాన్ని గుర్తుపట్టగలరా?
-          </h2>
-           <div id="randomNumber"></div>
-            <script>
-              $("#randomNumber").css("fontSize", "2000%");
-            </script>
-          </div>
-          <!--//summary-->
-        </section>
-        <!--//section-->
-      </div>
-      <!--//main-body-->
+      $("#decrease").click(function () {
+        
+        if(speed <=1){
+          speed = 1;
+        }
+        if (speed >= 99) {
+          speed = 3;
+        }
+        speed = speed - 1;
+        var url = new URL(window.location.href);
+        url.searchParams.set('speed', speed);
+        window.location.href = url.href;
+      });
+
+      $("#pause").click(function () {
+        speed = 99;
+        var url = new URL(window.location.href);
+        url.searchParams.set('speed', speed);
+        window.location.href = url.href;
+      });
+
+      $("#play").click(function () {
+        speed = 3;
+        var url = new URL(window.location.href);
+        url.searchParams.set('speed', speed);
+        window.location.href = url.href;
+      });
+
+
+
+
+    });
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+  <a class="btn" id="achhulu"><i class="fa fa-filter"></i> అచ్చులు మాత్రమే</a>
+  <a class="btn" id="hallulu"><i class="fa fa-filter"></i> హల్లులు మాత్రమే</a>
+  <a class="btn" id="achhuluhallulu"><i class="fa fa-filter"></i> అచ్చులు + హల్లులు</a>
+  <a class="btn" id="increase"><i class="fa fa-minus"></i></a>Speed
+  <a class="btn" id="decrease"><i class="fa fa-plus"></i> </a>
+  <a class="btn" id="pause"><i class="fa fa-pause"></i> Pause </a>
+  <a class="btn" id="play"><i class="fa fa-play"></i> Play </a>
+  <div class="wrapper">
+    <!--//sidebar-wrapper-->
+
+    <div class="main-wrapper">
+      <section class="section summary-section">
+        <h2 class="section-title">
+          <i class="fa fa-lightbulb-o"></i>ఈ తెలుగు అక్షరాన్ని గుర్తుపట్టగలరా?
+        </h2>
+
+
+        <div id="randomNumber"></div>
+        <script>
+          $("#randomNumber").css("fontSize", "2000%");
+        </script>
     </div>
+    <!--//summary-->
+    </section>
+    <!--//section-->
+  </div>
+  <!--//main-body-->
+  </div>
 
-    <footer class="footer">
-      <div class="text-center">
-        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
-        <small class="copyright"
-          >Designed with <i class="fa fa-heart"></i> by
-          <a href="http://www.suryarao.in" target="_blank"
-            >Surya Rayarao</a
-          ></small
-        >
-        <p>
-          Copyright
-          <small class="copyright"
-            ><span id="currentYear"></span> &copy; Surya Rayarao</small
-          >
-        </p>
-      </div>
-      <!--//container-->
-    </footer>
-    <!--//footer-->
-    
-  </body>
+  <footer class="footer">
+    <div class="text-center">
+      <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+      <small class="copyright">Designed with <i class="fa fa-heart"></i> by
+        <a href="http://www.suryarao.in" target="_blank">Surya Rayarao</a></small>
+      <p>
+        Copyright
+        <small class="copyright"><span id="currentYear"></span> &copy; Surya Rayarao</small>
+      </p>
+    </div>
+    <!--//container-->
+  </footer>
+  <!--//footer-->
+
+</body>
+
 </html>
