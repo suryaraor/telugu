@@ -95,6 +95,9 @@
         sequence
         if (sequence == 'Y') {
           randomNumber = parseInt(randomNumber) + 1;
+          if(randomNumber >= finalArray.length){
+            randomNumber = 0;
+          }
           $('#randomNumber').text(finalArray[randomNumber] + "");
         } else {
           randomNumber = parseInt("" + Math.random() * finalArray.length);
