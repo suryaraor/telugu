@@ -11,15 +11,18 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="This is a simple yet powerful interactive game for Kids learning Telugu Alphabets. Kids will be presented with random alphabets from Telugu and you can ask them to identify." />
+  <meta name="description"
+    content="This is a simple yet powerful interactive game for Kids learning Telugu Alphabets. Kids will be presented with random alphabets from Telugu and you can ask them to identify." />
   <meta property="og:title" content="ఈ తెలుగు అక్షరాన్ని గుర్తుపట్టగలరా?" />
-  <meta property="og:description" content="This is a simple yet powerful interactive game for Kids learning Telugu Alphabets. Kids will be presented with random alphabets from Telugu and you can ask them to identify." />
+  <meta property="og:description"
+    content="This is a simple yet powerful interactive game for Kids learning Telugu Alphabets. Kids will be presented with random alphabets from Telugu and you can ask them to identify." />
   <meta property="og:url" content="https://suryaraor.github.io/telugu/?speed=3&achhulu=Y&hallulu=N" />
   <meta property="og:image" content="https://suryaraor.github.io/telugu/telugu.JPG" />
 
   <meta name="author" content="Surya Rayarao" />
   <link rel="shortcut icon" href="favicon.ico" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"
     rel="stylesheet" type="text/css" />
   <!-- Global CSS -->
   <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css" />
@@ -53,6 +56,7 @@
       let speedMillis = speed * 1000;
       let achhulu = 'Y';
       let hallulu = 'Y';
+      let sequence = 'N';
       if (searchParams.has('speed')) {
         speed = searchParams.get('speed');
         speedMillis = parseInt(speed) * 1000;
@@ -64,6 +68,12 @@
         hallulu = searchParams.get('hallulu');
       }
 
+      if (searchParams.has('sequence')) {
+        sequence = searchParams.get('sequence');
+      }
+
+
+
       if (achhulu == 'Y') {
         if (hallulu == 'Y') {
           finalArray = achhuluHalluluArray.slice();
@@ -74,14 +84,22 @@
         finalArray = halluluArray.slice();
       }
 
-
-      var randomNumber = parseInt("" + Math.random() * finalArray.length);
-      $('#randomNumber').text(finalArray[randomNumber] + "");
-
-
-      setInterval(function () {
-        var randomNumber = parseInt("" + Math.random() * finalArray.length);
+      var randomNumber = 0;
+      if (sequence == 'Y') {
+        $('#randomNumber').text(finalArray[0] + "");
+      } else {
+        randomNumber = parseInt("" + Math.random() * finalArray.length);
         $('#randomNumber').text(finalArray[randomNumber] + "");
+      }
+      setInterval(function () {
+        sequence
+        if (sequence == 'Y') {
+          randomNumber = parseInt(randomNumber) + 1;
+          $('#randomNumber').text(finalArray[randomNumber] + "");
+        } else {
+          randomNumber = parseInt("" + Math.random() * finalArray.length);
+          $('#randomNumber').text(finalArray[randomNumber] + "");
+        }
       }, speedMillis);  //Delay here = 5 seconds 
 
 
@@ -129,10 +147,10 @@
           speed = speed - 1;
         }
 
-          var url = new URL(window.location.href);
-          url.searchParams.set('speed', speed);
-          window.location.href = url.href;
-        });
+        var url = new URL(window.location.href);
+        url.searchParams.set('speed', speed);
+        window.location.href = url.href;
+      });
 
       $("#pause").click(function () {
         speed = 99;
@@ -148,16 +166,22 @@
         window.location.href = url.href;
       });
 
+      $("#sequence").click(function () {
+        if (searchParams.has('sequence')) {
+          var sequence = searchParams.get('sequence');
+          if (sequence == 'Y') {
+            sequence = 'N';
+          }
+        } else {
+          sequence = 'N';
+        }
 
-
-
+        var url = new URL(window.location.href);
+        url.searchParams.set('sequence', sequence);
+        window.location.href = url.href;
+      });
     });
-
-
-
   </script>
-
-
 </head>
 
 <body>
@@ -168,6 +192,7 @@
   <a class="btn" id="decrease"><i class="fa fa-plus"></i> </a>
   <a class="btn" id="pause"><i class="fa fa-pause"></i> Pause </a>
   <a class="btn" id="play"><i class="fa fa-play"></i> Play </a>
+  <a class="btn" id="sequence"><i class="fa fa-play"></i> Sequence </a>
   <div class="wrapper">
     <!--//sidebar-wrapper-->
 
